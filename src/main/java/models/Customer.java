@@ -1,17 +1,30 @@
 package models;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "customer")
+
 public class Customer {
-    private  String id;
+
+    @Id
+    @Column(name = "cust_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    private  int id;
+
+    @Column(name = "cust_name")
     private  String name;
+
     private  String email;
     private  String phone;
     private  String address;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -50,7 +63,7 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(String id, String name, String email, String phone, String address) {
+    public Customer(int id, String name, String email, String phone, String address) {
         this.id = id;
         this.name = name;
         this.email = email;

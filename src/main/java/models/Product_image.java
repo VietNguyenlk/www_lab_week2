@@ -1,27 +1,38 @@
 package models;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "product_image")
 public class Product_image {
-    private String productId;
-    private String imgID;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product productId;
+
+    @Id
+    @Column(name = "image_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int imgID;
     private String path;
     private  String alternative;
 
     public Product_image() {
     }
 
-    public String getProductId() {
+    public Product getProductId() {
         return productId;
     }
 
-    public void setProductId(String productId) {
+    public void setProductId(Product productId) {
         this.productId = productId;
     }
 
-    public String getImgID() {
+    public int getImgID() {
         return imgID;
     }
 
-    public void setImgID(String imgID) {
+    public void setImgID(int imgID) {
         this.imgID = imgID;
     }
 

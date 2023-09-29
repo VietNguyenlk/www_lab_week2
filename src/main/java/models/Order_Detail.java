@@ -1,8 +1,18 @@
 package models;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "order_detail")
 public class Order_Detail {
-    private  String orderId;
-    private String productId;
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "order_id" )
+    private  Orders orderId;
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product productId;
     private  int quantity;
     private double price;
     private String note;
@@ -10,7 +20,7 @@ public class Order_Detail {
     public Order_Detail() {
     }
 
-    public Order_Detail(String orderId, String productId, int quantity, double price, String note) {
+    public Order_Detail(Orders orderId, Product productId, int quantity, double price, String note) {
         this.orderId = orderId;
         this.productId = productId;
         this.quantity = quantity;
@@ -18,19 +28,19 @@ public class Order_Detail {
         this.note = note;
     }
 
-    public String getOrderId() {
+    public Orders getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(String orderId) {
+    public void setOrderId(Orders orderId) {
         this.orderId = orderId;
     }
 
-    public String getProductId() {
+    public Product getProductId() {
         return productId;
     }
 
-    public void setProductId(String productId) {
+    public void setProductId(Product productId) {
         this.productId = productId;
     }
 

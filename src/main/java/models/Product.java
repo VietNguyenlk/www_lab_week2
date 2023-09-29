@@ -1,21 +1,31 @@
 package models;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "product")
 public class Product {
-    private  String id;
+    @Id
+    @Column(name = "product_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private  int id;
+
+
     private String name;
     private String description;
     private String unit;
+    @Column(name = "manufacturer_name")
     private String manufacturer_name;
     private int status;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
     public Product() {
     }
 
-    public Product(String id, String name, String description, String unit, String manufacturer_name, int status) {
+    public Product(int id, String name, String description, String unit, String manufacturer_name, int status) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -24,7 +34,7 @@ public class Product {
         this.status = status;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
