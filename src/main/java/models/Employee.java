@@ -1,13 +1,31 @@
 package models;
 
+import enums.EmployeeStatus;
+import jakarta.persistence.*;
+
+import java.sql.Date;
+
+@Entity
+@Table(name = "employee")
+@NamedQuery(name = "Employee.findAll",query = "select e from  Employee  e where e.status=1")
+
 public class Employee {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "emp_id")
     private String id;
+    @Column(name = "full_name",length = 150,nullable = false)
     private String fullName;
-    private String dob;
+    @Column(name = "dob",nullable = false)
+    private Date dob;
+    @Column(name ="email", unique = true, length = 150)
     private String email;
+    @Column(name = "phone",length = 15, nullable = false)
     private String phone;
+    @Column(name = "address",length = 150,nullable = false)
     private String address;
-    private  int status;
+    @Column(name = "status",nullable = false)
+    private EmployeeStatus status;
 
     public String getId() {
         return id;
@@ -25,11 +43,11 @@ public class Employee {
         this.fullName = fullName;
     }
 
-    public String getDob() {
+    public Date getDob() {
         return dob;
     }
 
-    public void setDob(String dob) {
+    public void setDob(Date dob) {
         this.dob = dob;
     }
 
@@ -57,18 +75,18 @@ public class Employee {
         this.address = address;
     }
 
-    public int getStatus() {
+    public EmployeeStatus getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(EmployeeStatus status) {
         this.status = status;
     }
 
     public Employee() {
     }
 
-    public Employee(String id, String fullName, String dob, String email, String phone, String address, int status) {
+    public Employee(String id, String fullName, Date dob, String email, String phone, String address, EmployeeStatus status) {
         this.id = id;
         this.fullName = fullName;
         this.dob = dob;
