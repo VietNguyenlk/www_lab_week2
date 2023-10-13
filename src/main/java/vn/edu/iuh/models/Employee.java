@@ -1,6 +1,6 @@
-package models;
+package vn.edu.iuh.models;
 
-import enums.EmployeeStatus;
+import vn.edu.iuh.enums.EmployeeStatus;
 import jakarta.persistence.*;
 
 import java.sql.Date;

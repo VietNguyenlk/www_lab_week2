@@ -1,4 +1,4 @@
-package enums;
+package vn.edu.iuh.enums;
 
 public enum ProductStatus {
 

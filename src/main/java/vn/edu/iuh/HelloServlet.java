@@ -1,4 +1,4 @@
-package vn.edu.iuh.fit.www_lab_week2;
+package vn.edu.iuh;
 
 import java.io.*;
 import jakarta.servlet.http.*;

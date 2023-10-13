@@ -1,4 +1,4 @@
-package db;
+package vn.edu.iuh.db;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;

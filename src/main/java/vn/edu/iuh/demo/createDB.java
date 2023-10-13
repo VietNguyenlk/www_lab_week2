@@ -1,6 +1,6 @@
-package demo;
+package vn.edu.iuh.demo;
 
-import db.JPAConnection;
+import vn.edu.iuh.db.JPAConnection;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;

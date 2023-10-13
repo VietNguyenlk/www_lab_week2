@@ -24,8 +24,7 @@ tasks.withType(JavaCompile) {
 dependencies {
   compileOnly('jakarta.platform:jakarta.jakartaee-web-api:9.1.0')
 
-  testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
-  testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+
   compileOnly('jakarta.platform:jakarta.jakartaee-web-api:10.0.0')
   //for access DB
   implementation 'org.mariadb.jdbc:mariadb-java-client:3.2.0'
@@ -40,6 +39,13 @@ dependencies {
   implementation('org.jboss.weld.se:weld-se-core:5.1.0.Final')
   //for convert type in rest
   implementation 'com.fasterxml.jackson.datatype:jackson-datatypejsr310:2.15.2'
+  implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.15.2'
+  implementation 'com.fasterxml.jackson.module:jackson-module-parameter-names:2.15.2'
+
+  implementation 'jakarta.json:jakarta.json-api:2.1.2'
+
+  testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+  testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }
 
 test {

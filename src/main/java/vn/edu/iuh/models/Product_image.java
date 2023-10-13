@@ -1,4 +1,4 @@
-package models;
+package vn.edu.iuh.models;
 
 import jakarta.persistence.*;
 

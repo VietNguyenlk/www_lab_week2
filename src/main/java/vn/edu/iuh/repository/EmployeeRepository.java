@@ -1,4 +1,4 @@
-package repository;
+package vn.edu.iuh.repository;
 
 public class EmployeeRepository {
 
