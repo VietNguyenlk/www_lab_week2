@@ -14,7 +14,9 @@ public class Product_image {
     @Column(name = "image_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int imgID;
+    @Column(name = "path", length = 250, nullable = false)
     private String path;
+    @Column(name = "alternative", length = 250)
     private  String alternative;
 
     public Product_image() {

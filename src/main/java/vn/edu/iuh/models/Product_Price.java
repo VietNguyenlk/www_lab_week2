@@ -3,6 +3,7 @@ package vn.edu.iuh.models;
 import jakarta.persistence.*;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "product_price")
@@ -13,16 +14,18 @@ public class Product_Price {
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product productId;
-
+    @Id
     @Column(name = "price_date_time", columnDefinition = "datetime")
-    private Date priceDate;
+    private LocalDateTime priceDate;
+    @Column(name = "price", nullable = false)
     private double price;
+    @Column(name = "note")
     private String note;
 
     public Product_Price() {
     }
 
-    public Product_Price(Product productId, Date priceDate, double price, String note) {
+    public Product_Price(Product productId, LocalDateTime priceDate, double price, String note) {
         this.productId = productId;
         this.priceDate = priceDate;
         this.price = price;
@@ -37,11 +40,11 @@ public class Product_Price {
         this.productId = productId;
     }
 
-    public Date getPriceDate() {
+    public LocalDateTime getPriceDate() {
         return priceDate;
     }
 
-    public void setPriceDate(Date priceDate) {
+    public void setPriceDate(LocalDateTime priceDate) {
         this.priceDate = priceDate;
     }
 

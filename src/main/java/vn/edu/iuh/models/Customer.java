@@ -2,6 +2,8 @@ package vn.edu.iuh.models;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "customer")
 
@@ -15,10 +17,14 @@ public class Customer {
 
     @Column(name = "cust_name")
     private  String name;
-
+    @Column(name = "email", unique = true,length = 150,nullable = true)
     private  String email;
+    @Column(name = "phone",nullable = false)
     private  String phone;
+    @Column(name = "address",length = 250,nullable = false)
     private  String address;
+    @OneToMany(mappedBy = "customer")
+    private List<Order> ordersList;
 
     public int getId() {
         return id;

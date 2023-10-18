@@ -1,10 +1,12 @@
 package vn.edu.iuh.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import vn.edu.iuh.enums.EmployeeStatus;
 import jakarta.persistence.*;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "employee")
@@ -18,7 +20,10 @@ public class Employee {
     @Column(name = "full_name",length = 150,nullable = false)
     private String fullName;
     @Column(name = "dob",nullable = false)
-    private Date dob;
+    @JsonFormat(shape =  JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd")
+
+    private LocalDate dob;
+
     @Column(name ="email", unique = true, length = 150)
     private String email;
     @Column(name = "phone",length = 15, nullable = false)
@@ -26,9 +31,10 @@ public class Employee {
     @Column(name = "address",length = 150,nullable = false)
     private String address;
     @Column(name = "status",nullable = false)
+    @Enumerated(EnumType.ORDINAL)
     private EmployeeStatus status;
-    @OneToMany()
-    private List<Orders> lstOrder;
+    @OneToMany(mappedBy = "employee",cascade = CascadeType.ALL)
+    private List<Order> lstOrder;
 
     public int getId() {
         return id;
@@ -46,11 +52,11 @@ public class Employee {
         this.fullName = fullName;
     }
 
-    public Date getDob() {
+    public LocalDate getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(LocalDate dob) {
         this.dob = dob;
     }
 
@@ -89,7 +95,7 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(int id, String fullName, Date dob, String email, String phone, String address, EmployeeStatus status) {
+    public Employee(int id, String fullName, LocalDate dob, String email, String phone, String address, EmployeeStatus status) {
         this.id = id;
         this.fullName = fullName;
         this.dob = dob;
@@ -111,4 +117,19 @@ public class Employee {
                 ", status=" + status +
                 '}';
     }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Employee)) return false;
+        Employee employee = (Employee) o;
+        return id == employee.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }
+

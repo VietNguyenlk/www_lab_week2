@@ -1,6 +1,10 @@
 package vn.edu.iuh.models;
 
 import jakarta.persistence.*;
+import vn.edu.iuh.enums.ProductStatus;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "product")
@@ -9,14 +13,29 @@ public class Product {
     @Column(name = "product_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  int id;
-
-
+    @Column(name = "name", length = 150, nullable = false)
     private String name;
+
+    @Column(name = "description", length = 250, nullable = false)
     private String description;
+    @Column(name = "unit", length = 25, nullable = false)
     private String unit;
-    @Column(name = "manufacturer_name")
+    @Column(name = "manufacturer_name", length = 100, nullable = false)
     private String manufacturer_name;
-    private int status;
+    @Column(name = "status")
+    private ProductStatus status;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @JoinColumn
+    private List<Product_image> productImageList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @JoinColumn
+    private List<Order_Detail> orderDetails = new ArrayList<>();
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @JoinColumn
+    private List<Product_Price> productPrices = new ArrayList<>();
+
 
     public int getId() {
         return id;
@@ -25,7 +44,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(int id, String name, String description, String unit, String manufacturer_name, int status) {
+    public Product(int id, String name, String description, String unit, String manufacturer_name, ProductStatus status) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -70,11 +89,11 @@ public class Product {
         this.manufacturer_name = manufacturer_name;
     }
 
-    public int getStatus() {
+    public ProductStatus getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(ProductStatus status) {
         this.status = status;
     }
 

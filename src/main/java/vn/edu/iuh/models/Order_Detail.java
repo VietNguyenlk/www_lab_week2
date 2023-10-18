@@ -8,19 +8,23 @@ public class Order_Detail {
     @Id
     @ManyToOne
     @JoinColumn(name = "order_id" )
-    private  Orders orderId;
+    private Order orderId;
     @Id
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product productId;
+
+    @Column(name = "quantity", nullable = false)
     private  int quantity;
+    @Column(name = "price", nullable = false)
     private double price;
+    @Column(name = "note", length = 255, nullable = true)
     private String note;
 
     public Order_Detail() {
     }
 
-    public Order_Detail(Orders orderId, Product productId, int quantity, double price, String note) {
+    public Order_Detail(Order orderId, Product productId, int quantity, double price, String note) {
         this.orderId = orderId;
         this.productId = productId;
         this.quantity = quantity;
@@ -28,11 +32,11 @@ public class Order_Detail {
         this.note = note;
     }
 
-    public Orders getOrderId() {
+    public Order getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(Orders orderId) {
+    public void setOrderId(Order orderId) {
         this.orderId = orderId;
     }
 
